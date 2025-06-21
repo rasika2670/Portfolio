@@ -4,7 +4,8 @@ import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import {
   Moon, Sun, Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Code2, Palette, Users, Award,
-  MonitorSmartphone, Wrench, Brain, User, MessageSquare
+  MonitorSmartphone, Wrench, Brain, User, MessageSquare,
+  Icon
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -25,12 +26,37 @@ export default function Portfolio() {
     }
   }, [darkMode])
 
+
+  const socialLinks = [
+    {
+      Icon: Github,
+      href: "https://github.com/rasika2670",
+      external: true,
+    },
+    {
+      Icon: Linkedin,
+      href: "https://www.linkedin.com/in/rasika-mhaske-b28918260/",
+      external: true,
+    },
+    {
+      Icon: Mail,
+      href: "https://mail.google.com/mail/?view=cm&fs=1&to=rasikamhaske26@gmail.com",
+      external: true,
+    },
+    {
+      Icon: Code2,
+      href: "https://leetcode.com/u/wEu6YASGFG/",
+      external: true,
+    }
+  ];
+
+
   const skills = [
     {
       name: "Web & App Development",
       icon: Code2,
       level: 90,
-      tags: ["HTML5", "CSS3", "JavaScript", "React.js", "React Native", "Firebase"],
+      tags: ["HTML5", "CSS3", "JavaScript", "React.js", "React Native", "Firebase", "MongoDB", "Tailwind CSS", "Bootstrap"],
     },
     {
       name: "UI/UX Design",
@@ -48,14 +74,14 @@ export default function Portfolio() {
       name: "Tools & Technologies",
       icon: Wrench,
       level: 80,
-      tags: ["VS Code", "GitHub", "Canva"],
+      tags: ["VS Code", "GitHub", "Android Studio", "Canva", "Figma"],
     },
 
     {
       name: "Soft Skills",
       icon: Users,
       level: 88,
-      tags: ["Teamwork", "Leadership", "Communication", "Time Management"],
+      tags: ["Teamwork", "Leadership", "Adaptibility", "Communication", "Time Management"],
     },
   ];
 
@@ -65,7 +91,7 @@ export default function Portfolio() {
       description:
         "React Native app using a Flask-hosted ML model to classify waste. Tracks user eco-behavior using Firebase integration.",
       image: "/projects/ecoclassify.png", // Replace with actual image
-      tags: ["React Native", "Firebase", "Flask", "Hugging Face", "ML"],
+      tags: ["React Native", "Firebase", "Flask", "Hugging Face", "ML", "Figma"],
       github: "https://github.com/rasika2670/SmartWasteClassifier",
       live: "#", // Replace with deployment link
     },
@@ -74,7 +100,7 @@ export default function Portfolio() {
       description:
         "Bike rental platform with features like time-based bookings, real-time tracking, payments, and support.",
       image: "/projects/qride.png",
-      tags: ["MongoDB", "React.js", "Tailwind CSS", "ExpressJS", "NodeJS"],
+      tags: ["MongoDB", "React.js", "Tailwind CSS", "ExpressJS", "NodeJS", "Figma"],
       github: "https://github.com/rasika2670/QRides",
       live: "https://qrides.netlify.app/",
     },
@@ -135,9 +161,9 @@ export default function Portfolio() {
                 whileHover={{ scale: 1.05 }}
                 className="text-2xl font-bold bg-gradient-to-r from-[#6431b9] to-[#0c99a4] bg-clip-text text-transparent"
               >
-              <a href="#">
-                Rasika.
-              </a>
+                <a href="#">
+                  Rasika.
+                </a>
               </motion.div>
 
               {/* Desktop Navigation */}
@@ -239,7 +265,7 @@ export default function Portfolio() {
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
                 <a
-                  href="/Rasika_Mhaske_Resume.pdf"
+                  href="/Rasika Mhaske.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -260,30 +286,14 @@ export default function Portfolio() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="flex justify-center space-x-6 my-12"
               >
-                {[
-                  {
-                    Icon: Github,
-                    href: "https://github.com/rasika2670",
-                    external: true,
-                  },
-                  {
-                    Icon: Linkedin,
-                    href: "https://www.linkedin.com/in/rasika-mhaske-b28918260/",
-                    external: true,
-                  },
-                  {
-                    Icon: Mail,
-                    href: "https://mail.google.com/mail/?view=cm&fs=1&to=rasikamhaske26@gmail.com",
-                    external: true,
-                  },
-                ].map(({ Icon, href, external }, index) => (
+                {socialLinks.map(({ Icon, href, external }, index) => (
                   <motion.a
                     key={index}
                     href={href}
                     target={external ? "_blank" : "_self"}
                     rel={external ? "noopener noreferrer" : ""}
                     whileHover={{ scale: 1.2, rotate: 5 }}
-                    className="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-violet-200 dark:hover:bg-violet-900 transition-colors mb-8"
+                    className="p-3 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-violet-200 dark:hover:bg-violet-900 transition-colors mb-8"
                   >
                     <Icon className="h-6 w-6" />
                   </motion.a>
@@ -353,59 +363,6 @@ export default function Portfolio() {
                 </motion.div>
               </motion.div>
             </div>
-          </div>
-        </section>
-
-        {/* Skills Section */}
-        <section id="skills" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills & Expertise</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-[#6431b9] to-[#0c99a4] mx-auto rounded-full" />
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Card className="p-6 h-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl border-0">
-                    <CardContent className="p-0">
-                      <div className="flex items-center mb-4">
-                        <div className="p-3 rounded-xl bg-gradient-to-r from-[#6431b9] to-[#0c99a4] mr-4">
-                          <skill.icon className="h-6 w-6 text-white" />
-                        </div>
-                        <h3 className="text-xl font-semibold">{skill.name}</h3>
-                      </div>
-
-                      {/* Tag badges */}
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {skill.tags.map((tag: string, tagIndex: number) => (
-                          <span
-                            key={tagIndex}
-                            className="rounded-full px-3 py-1 text-sm font-medium bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-
           </div>
         </section>
 
@@ -479,6 +436,59 @@ export default function Portfolio() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">Skills & Expertise</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-[#6431b9] to-[#0c99a4] mx-auto rounded-full" />
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Card className="p-6 h-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl border-0">
+                    <CardContent className="p-0">
+                      <div className="flex items-center mb-4">
+                        <div className="p-3 rounded-xl bg-gradient-to-r from-[#6431b9] to-[#0c99a4] mr-4">
+                          <skill.icon className="h-6 w-6 text-white" />
+                        </div>
+                        <h3 className="text-xl font-semibold">{skill.name}</h3>
+                      </div>
+
+                      {/* Tag badges */}
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        {skill.tags.map((tag: string, tagIndex: number) => (
+                          <span
+                            key={tagIndex}
+                            className="rounded-full px-3 py-1 text-sm font-medium bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
           </div>
         </section>
 
@@ -585,9 +595,30 @@ export default function Portfolio() {
         {/* Footer */}
         <footer className="py-8 bg-gray-900 dark:bg-gray-950 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex justify-center space-x-6 my-12"
+            >
+              {socialLinks.map(({ Icon, href, external }, index) => (
+                <motion.a
+                  key={index}
+                  href={href}
+                  target={external ? "_blank" : "_self"}
+                  rel={external ? "noopener noreferrer" : ""}
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className="p-3 rounded-full bg-gray-800 hover:bg-violet-900 transition-colors mb-2"
+                >
+                  <Icon className="h-6 w-6" />
+                </motion.a>
+              ))}
+            </motion.div>
+
             <div className="text-center">
               <p className="text-gray-400">
-                &copy; {new Date().getFullYear()} Rasika Mhaske | All Rights Reserved
+                &copy; {new Date().getFullYear()} Rasika Mhaske. All Rights Reserved.
               </p>
             </div>
           </div>

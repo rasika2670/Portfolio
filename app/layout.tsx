@@ -6,13 +6,13 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Alex Chen - UI/UX Designer & Developer",
+  title: "Rasika Mhaske | Portfolio",
   description:
     "Computer Science & Design student passionate about creating beautiful, functional digital experiences. Portfolio showcasing UI/UX design and full-stack development projects.",
   keywords: "UI/UX Designer, Full-Stack Developer, Computer Science, Design, React, Next.js, Portfolio",
-  authors: [{ name: "Alex Chen" }],
+  authors: [{ name: "Rasika Mhaske" }],
   openGraph: {
-    title: "Alex Chen - UI/UX Designer & Developer",
+    title: "Rasika Mhaske | Portfolio",
     description:
       "Computer Science & Design student passionate about creating beautiful, functional digital experiences.",
     type: "website",
