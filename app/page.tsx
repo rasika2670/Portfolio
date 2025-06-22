@@ -4,8 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import {
   Moon, Sun, Menu, X, Github, Linkedin, Mail, ExternalLink, Code, Code2, Palette, Users, Award,
-  MonitorSmartphone, Wrench, Brain, User, MessageSquare,
-  Icon
+  MonitorSmartphone, Wrench, Brain, User, MessageSquare, MapPin
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -93,7 +92,7 @@ export default function Portfolio() {
       image: "/images/EcoClassify.png", // Replace with actual image
       tags: ["React Native", "Firebase", "Flask", "Hugging Face", "ML", "Figma"],
       github: "https://github.com/rasika2670/SmartWasteClassifier",
-       // Replace with deployment link
+      // Replace with deployment link
     },
     {
       title: "QRide – Vehicle Rental Website",
@@ -114,7 +113,7 @@ export default function Portfolio() {
     },
   ];
 
-  const navItems = ["Home", "About", "Projects", "Skills","Contact"]
+  const navItems = ["Home", "About", "Projects", "Skills", "Contact"]
 
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -599,7 +598,7 @@ export default function Portfolio() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex justify-center space-x-6 my-12"
+              className="flex justify-center space-x-6 my-4"
             >
               {socialLinks.map(({ Icon, href, external }, index) => (
                 <motion.a
@@ -614,8 +613,11 @@ export default function Portfolio() {
                 </motion.a>
               ))}
             </motion.div>
-
-            <div className="text-center">
+            <div className="text-center space-y-4">
+              <p className="text-gray-400 flex items-center justify-center gap-2">
+                <MapPin className="h-5 w-5 text-gray-400" />
+                Nashik, Maharashtra, India
+              </p>
               <p className="text-gray-400">
                 &copy; {new Date().getFullYear()} Rasika Mhaske. All Rights Reserved.
               </p>
