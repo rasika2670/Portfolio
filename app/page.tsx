@@ -90,16 +90,16 @@ export default function Portfolio() {
       title: "EcoClassify – Smart Waste Classifier App",
       description:
         "React Native app using a Flask-hosted ML model to classify waste. Tracks user eco-behavior using Firebase integration.",
-      image: "/projects/ecoclassify.png", // Replace with actual image
+      image: "/images/EcoClassify.png", // Replace with actual image
       tags: ["React Native", "Firebase", "Flask", "Hugging Face", "ML", "Figma"],
       github: "https://github.com/rasika2670/SmartWasteClassifier",
-      live: "#", // Replace with deployment link
+       // Replace with deployment link
     },
     {
       title: "QRide – Vehicle Rental Website",
       description:
         "Bike rental platform with features like time-based bookings, real-time tracking, payments, and support.",
-      image: "/projects/qride.png",
+      image: "/images/QRide.png",
       tags: ["MongoDB", "React.js", "Tailwind CSS", "ExpressJS", "NodeJS", "Figma"],
       github: "https://github.com/rasika2670/QRides",
       live: "https://qrides.netlify.app/",
@@ -108,14 +108,13 @@ export default function Portfolio() {
       title: "College ERP System",
       description:
         "ERP system with modules for student management, attendance, exam scheduling, and fee processing.",
-      image: "/projects/college-erp.png",
+      image: "/images/ERP.png",
       tags: ["React.js", "MongoDB", "Tailwind CSS", "Flask", "Figma"],
       github: "https://github.com/rasika2670/College-ERP-System",
-      live: "#",
     },
   ];
 
-  const navItems = ["Home", "About", "Skills", "Projects", "Contact"]
+  const navItems = ["Home", "About", "Projects", "Skills","Contact"]
 
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
