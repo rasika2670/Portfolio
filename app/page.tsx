@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
+import Experiences from "@/components/experiences";
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
@@ -113,7 +114,7 @@ export default function Portfolio() {
     },
   ];
 
-  const navItems = ["Home", "About", "Projects", "Skills", "Contact"]
+  const navItems = ["Home", "About", "Projects", "Skills","Experience", "Contact"]
 
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -316,38 +317,84 @@ export default function Portfolio() {
               <div className="w-24 h-1 bg-gradient-to-r from-[#6431b9] to-[#0c99a4] mx-auto rounded-full" />
             </motion.div>
 
-            <div className="grid md:grid-cols-2 justify-evenly items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 md:px-12 lg:px-24 py-10 ">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="pl-16"
+                className="relative flex justify-center items-center w-full min-h-[400px]"
               >
-                <div className="relative">
+                {/* Floating background image */}
+                <motion.div
+                  animate={{
+                    x: [0, -20, 0, 20, 0, -20, 0],
+                    y: [0, 20, 0, -20, 0, 20, 0],
+                  }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute z-0 w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] h-auto"
+                >
                   <Image
-                    src="\images\rasika.png"
+                    src="/images/border.png"
+                    alt="Floating Background"
+                    width={400}
+                    height={400}
+                    className="w-full h-full object-contain"
+                  />
+                </motion.div>
+
+                {/* Main Image */}
+                <motion.div
+                  animate={{
+                    x: [0, 20, 0, -20, 0, 20, 0],
+                    y: [0, -20, 0, 20, 0, -20, 0],
+                  }}
+                  transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative z-10 w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px]"
+                >
+                  <Image
+                    src="/images/rasika.png"
                     alt="About Rasika"
                     width={400}
                     height={400}
-                    className=" w-[400px] h-[400px] object-cover object-top"
+                    className="w-full h-auto rounded-2xl object-cover object-top"
                   />
-                </div>
+                </motion.div>
+
+                {/* Floating Dots */}
+                <motion.div
+                  animate={{ x: [0, -6, 0, 6, 0], y: [0, -8, 0, 8, 0] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-6 left-6 w-6 h-6 bg-purple-400/30 dark:bg-purple-300/20 rounded-full backdrop-blur-md z-0"
+                />
+                <motion.div
+                  animate={{ x: [0, 6, 0, -6, 0], y: [0, 10, 0, -10, 0] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute bottom-6 right-8 w-5 h-5 bg-cyan-400/30 dark:bg-cyan-300/20 rounded-full backdrop-blur-md z-0"
+                />
+                <motion.div
+                  animate={{ x: [0, 8, 0, -8, 0], y: [0, 6, 0, -6, 0] }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-16 right-12 w-4 h-4 bg-pink-400/30 dark:bg-pink-300/20 rounded-full backdrop-blur-md z-0"
+                />
               </motion.div>
 
+              {/* Text Section */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="space-y-6 pr-16"
+                className="space-y-5 text-center md:text-left"
               >
-                <h3 className="text-2xl font-bold">Passionate about Design & Technology</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+                  Passionate about Design & Technology
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Hi! I'm Rasika Mhaske, a Computer Science and Design student passionate about web development and UI/UX design. I love creating clean, responsive, and user-friendly digital experiences that blend creativity with functionality.
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Apart from development, I'm actively involved in tech communities and college events, where I often contribute through design, leadership, and collaboration. I'm always eager to learn new tools and keep improving my skills. My goal is to grow as a developer and designer while building meaningful solutions that have a positive impact.
+                  Apart from development, I'm actively involved in tech communities and college events, where I contribute through design, leadership, and collaboration. I'm always eager to learn new tools and grow as a developer and designer while building solutions that make a difference.
                 </p>
 
                 <motion.div
@@ -355,9 +402,9 @@ export default function Portfolio() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-20 h-20 bg-gradient-to-r from-[#6431b9] to-[#0c99a4] rounded-2xl flex items-center justify-center shadow-lg"
+                  className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-[#6431b9] to-[#0c99a4] rounded-2xl flex items-center justify-center mx-auto md:mx-0 shadow-lg"
                 >
-                  <Award className="h-12 w-12 text-white" />
+                  <Award className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                 </motion.div>
               </motion.div>
             </div>
@@ -489,6 +536,10 @@ export default function Portfolio() {
 
           </div>
         </section>
+<section id="Experience">
+  <Experiences />
+</section>
+        
 
         {/* Contact Section */}
         <section id="contact" className="py-24 bg-gray-50 dark:bg-gray-900">
