@@ -114,7 +114,7 @@ export default function Portfolio() {
     },
   ];
 
-  const navItems = ["Home", "About", "Projects", "Skills","Experience", "Contact"]
+  const navItems = ["Home", "About", "Projects", "Skills", "Experience", "Contact"]
 
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -536,10 +536,10 @@ export default function Portfolio() {
 
           </div>
         </section>
-<section id="Experience">
-  <Experiences />
-</section>
-        
+
+        <section id="experience">
+          <Experiences />
+        </section>
 
         {/* Contact Section */}
         <section id="contact" className="py-24 bg-gray-50 dark:bg-gray-900">

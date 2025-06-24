@@ -1,76 +1,138 @@
-import { motion } from "framer-motion";
-import { Sparkles, Users, PenTool } from "lucide-react";
-import Image from "next/image";
+"use client";
 
-const experiences = [
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
+const events = [
   {
-    title: "Creative Team Member",
-    org: "MLSC",
-    icon: Sparkles,
-    description:
-      "Designing flyers, Instagram stories, and marketing materials to engage the tech community and promote events.",
-    year: "2023 – Present",
+    club: "MLSC",
+    contribution: "Designed flyers, Instagram stories, and handled visual branding.",
+    images: ["/images/mlsc1.jpg", "/images/mlsc2.jpg", "/images/mlsc3.jpg"],
   },
   {
-    title: "Website Coordinator",
-    org: "DESOC",
-    icon: PenTool,
-    description:
-      "Managing the official DESOC website and LinkedIn page, and contributing to the creative team when needed.",
-    year: "2023 – Present",
+    club: "DESOC",
+    contribution: "Managed website, LinkedIn page, and helped with event creatives.",
+    images: ["/images/desoc1.jpg", "/images/desoc2.jpg"],
   },
   {
-    title: "Design Team Lead",
-    org: "Techathon Innovera",
-    icon: Users,
-    description:
-      "Leading the design team, creating event branding, and managing all design-related deliverables and promotions.",
-    year: "2024",
+    club: "Techathon Innovera",
+    contribution: "Led the design team and managed all creative deliverables.",
+    images: ["/images/techathon1.jpg", "/images/techathon2.jpg", "/images/techathon3.jpg"],
   },
 ];
 
-export default function ExperienceSection() {
-  return (
-    <section id="experience" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Experience & Leadership</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#6431b9] to-[#0c99a4] mx-auto rounded-full" />
-        </motion.div>
+export default function EventsGallery() {
+  const [activeEvent, setActiveEvent] = useState<number | null>(null);
+  const [imageIndex, setImageIndex] = useState(0);
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {experiences.map((exp, index) => (
+  useEffect(() => {
+    if (activeEvent !== null) {
+      const interval = setInterval(() => {
+        setImageIndex((prev) =>
+          (prev + 1) % events[activeEvent].images.length
+        );
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [activeEvent]);
+
+  return (
+    <div className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-10">My Club Contributions</h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {events.map((event, index) => (
             <motion.div
-              key={exp.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.03 }}
-              className="bg-gray-100 dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-lg transition-all h-full"
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-2xl cursor-pointer"
+              onClick={() => {
+                setActiveEvent(index);
+                setImageIndex(0);
+              }}
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-gradient-to-r from-[#6431b9] to-[#0c99a4] rounded-xl">
-                  <exp.icon className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">{exp.title}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{exp.org} · {exp.year}</p>
-                </div>
+              <div className="relative w-full h-40 mb-4">
+                <Image
+                  src={event.images[0]}
+                  alt={event.club}
+                  fill
+                  className="rounded-xl object-cover"
+                />
               </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {exp.description}
-              </p>
+              <h3 className="text-xl font-semibold mb-2">{event.club}</h3>
+              <p className="text-gray-600 dark:text-gray-300">{event.contribution}</p>
             </motion.div>
           ))}
         </div>
+
+        {/* Modal */}
+        <AnimatePresence>
+          {activeEvent !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4"
+              onClick={() => setActiveEvent(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-5xl flex flex-col md:flex-row overflow-hidden"
+              >
+                {/* Left Panel */}
+                <div className="w-full md:w-1/3 p-6 border-b md:border-b-0 md:border-r border-gray-200 dark:border-gray-700">
+                  <h3 className="text-2xl font-bold mb-4">{events[activeEvent].club}</h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    {events[activeEvent].contribution}
+                  </p>
+                </div>
+
+                {/* Right Panel */}
+                <div className="w-full md:w-2/3 relative bg-black/5 dark:bg-white/5 min-h-[300px]">
+                  <Image
+                    src={events[activeEvent].images[imageIndex]}
+                    alt="Event Image"
+                    width={800}
+                    height={500}
+                    className="object-cover w-full h-full"
+                  />
+
+                  <button
+                    className="absolute top-1/2 left-4 -translate-y-1/2 bg-white/80 dark:bg-gray-800/70 p-2 rounded-full shadow"
+                    onClick={() =>
+                      setImageIndex(
+                        (prev) =>
+                          (prev - 1 + events[activeEvent].images.length) %
+                          events[activeEvent].images.length
+                      )
+                    }
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </button>
+
+                  <button
+                    className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/80 dark:bg-gray-800/70 p-2 rounded-full shadow"
+                    onClick={() =>
+                      setImageIndex(
+                        (prev) =>
+                          (prev + 1) % events[activeEvent].images.length
+                      )
+                    }
+                  >
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </section>
+    </div>
   );
 }
